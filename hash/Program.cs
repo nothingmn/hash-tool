@@ -43,9 +43,10 @@ namespace hash
                         input = string.Join(" ", args);
                     }
                 }
-
+				System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+				sw.Start ();
                 output = Hash.GetHash(input, parsedArgs.Type);
-
+				sw.Stop ();
                 if (!string.IsNullOrEmpty(parsedArgs.Out))
                 {
                     System.IO.File.WriteAllText(parsedArgs.Out, output);
@@ -54,14 +55,15 @@ namespace hash
                 {
                     if (parsedArgs.Verbose)
                     {
-                        Console.WriteLine("Input:");
-                        Console.WriteLine(input);
-                        Console.WriteLine("Output:");
-                        Console.WriteLine(output);
+						int max = 100;
+						if(input.Length<max) max = input.Length;
+                        Console.WriteLine(string.Format("Input:{0}", input.Substring(0, max)));
+                        Console.WriteLine(string.Format("Output:{0}", output));
+                        Console.WriteLine(string.Format("Duration:{0}ms", sw.ElapsedMilliseconds));
                     }
                     else
                     {
-                        Console.WriteLine(input + "=" + output);
+                        Console.WriteLine(output);
                     }
                 }
             }

@@ -489,7 +489,7 @@ namespace hash
         /// <returns> Printable string containing a user friendly description of command line arguments. </returns>
         public static string ArgumentsUsage(Type argumentType)
         {
-            int screenWidth = Parser.GetConsoleWindowWidth();
+            int screenWidth = 0;//Parser.GetConsoleWindowWidth();
             if (screenWidth == 0)
                 screenWidth = 80;
             return ArgumentsUsage(argumentType, screenWidth);
@@ -531,13 +531,14 @@ namespace hash
             internal SMALL_RECT srWindow;
             internal COORD dwMaximumWindowSize;
         }
-
+		/*
         [DllImport("kernel32.dll", EntryPoint = "GetStdHandle", SetLastError = true, CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         private static extern int GetStdHandle(int nStdHandle);
 
         [DllImport("kernel32.dll", EntryPoint = "GetConsoleScreenBufferInfo", SetLastError = true, CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         private static extern int GetConsoleScreenBufferInfo(int hConsoleOutput, ref CONSOLE_SCREEN_BUFFER_INFO lpConsoleScreenBufferInfo);
-
+		
+		
         /// <summary>
         /// Returns the number of columns in the current console window
         /// </summary>
@@ -552,7 +553,8 @@ namespace hash
             screenWidth = csbi.dwSize.x;
             return screenWidth;
         }
-
+        
+        */
         /// <summary>
         /// Searches a StringBuilder for a character
         /// </summary>

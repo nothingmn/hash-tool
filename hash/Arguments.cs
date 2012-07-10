@@ -20,7 +20,7 @@ namespace hash
         [Argument(ArgumentType.AtMostOnce, HelpText = "File to write the hash result to.", ShortName = "o")]
         public string Out;
 
-        [Argument(ArgumentType.AtMostOnce, DefaultValue = true, HelpText = "Verbose output", ShortName = "v")]
+        [Argument(ArgumentType.AtMostOnce, DefaultValue = false, HelpText = "Verbose output", ShortName = "v")]
         public bool Verbose;
 
 
