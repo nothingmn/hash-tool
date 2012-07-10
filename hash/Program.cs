@@ -18,7 +18,7 @@ namespace hash
             {
                 if(string.IsNullOrEmpty(parsedArgs.File) && string.IsNullOrEmpty(parsedArgs.RawInput))
                 {
-                    Console.WriteLine("You must specify the inputs with either the /f or /r parameter.");
+                    Console.WriteLine("You must specify the inputs with either the /f or /r parameter (or use /? for help).");
                     return;
                 }
                 string input = "";
@@ -58,7 +58,7 @@ namespace hash
 						int max = 100;
 						if(input.Length<max) max = input.Length;
 						string inputMessage = input.Substring(0, max);
-						if(!string.IsNullOrEmpty(parsedArgs.File)) inputMessage = parsedArgs.File;
+						if(!string.IsNullOrEmpty(parsedArgs.File)) inputMessage = parsedArgs.File + " (file)";
                         Console.WriteLine(string.Format("Input:{0}", inputMessage));
                         Console.WriteLine(string.Format("Output:{0}", output));
                         Console.WriteLine(string.Format("Duration:{0}ms", sw.ElapsedMilliseconds));
