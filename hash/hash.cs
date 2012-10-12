@@ -14,16 +14,14 @@ namespace hash
         /// <summary>The wanted hash function.</summary>
         public enum HashType : int
         {
-            /// <summary>MD5 Hashing</summary>
             MD5,
-            /// <summary>SHA1 Hashing</summary>
             SHA1,
-            /// <summary>SHA256 Hashing</summary>
             SHA256,
-            /// <summary>SHA384 Hashing</summary>
             SHA384,
-            /// <summary>SHA512 Hashing</summary>
-            SHA512
+            SHA512,
+            Murmur2,
+            Murmur3,
+
         } /* HashType */
         #endregion
 
@@ -42,6 +40,8 @@ namespace hash
                 case HashType.SHA256: strRet = GetSHA256(strPlain); break;
                 case HashType.SHA384: strRet = GetSHA384(strPlain); break;
                 case HashType.SHA512: strRet = GetSHA512(strPlain); break;
+                case HashType.Murmur2: strRet = GetMurMur2(strPlain); break;
+                case HashType.Murmur3: strRet = GetMurMur3(strPlain); break;
                 default: strRet = "Invalid HashType"; break;
             }
             return strRet;
@@ -60,6 +60,17 @@ namespace hash
         #endregion
 
         #region Hashers
+
+        private static string GetMurMur2(string strPlain)
+        {
+            return Custom.Murmur.MurmurHash2(System.Text.Encoding.UTF8.GetBytes(strPlain)).ToString();
+        }
+
+        private static string GetMurMur3(string strPlain)
+        {
+            return Custom.Murmur.MurmurHash3(System.Text.Encoding.UTF8.GetBytes(strPlain)).ToString();
+        }
+
         private static string GetMD5(string strPlain)
         {
             UnicodeEncoding UE = new UnicodeEncoding();
